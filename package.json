@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "cli": "tsx scripts/index.ts",
+    "cli": "tsx --env-file=.env.local scripts/index.ts",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
