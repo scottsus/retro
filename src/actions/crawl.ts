@@ -1,7 +1,5 @@
 import { chromium } from "playwright";
 
-const DIST_DIR = "./artifacts";
-
 async function crawl(url: string) {
   const browser = await chromium.launch();
   const page = await browser.newPage();
@@ -15,18 +13,19 @@ async function crawl(url: string) {
     }),
   );
 
-  const screenshot = await page.screenshot({
-    path: `${DIST_DIR}/screenshot.png`,
+  const screenshotBuffer = await page.screenshot({
     fullPage: true,
   });
 
+  const screenshotBlob = new Blob([screenshotBuffer], { type: "image/png" });
+
   await browser.close();
 
-  return { textContent, images, screenshot };
+  return { textContent, images, screenshotBlob };
 }
 
 crawl("https://scottsus.dev").then((result) => {
   console.log(result.textContent);
   console.log(result.images);
-  console.log("Screenshot saved as screenshot.png");
+  console.log("Screenshot returned as a Blob");
 });
