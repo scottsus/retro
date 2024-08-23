@@ -8,12 +8,12 @@ const rl = readline.createInterface({
 });
 
 rl.question("Please enter a URL: ", async (url) => {
-  const distDir = "./public";
-  const filePath = path.join(distDir, "url.txt");
+  const distDir = "./src/lib";
+  const filePath = path.join(distDir, "url.ts");
 
   try {
     await fs.promises.mkdir(distDir, { recursive: true });
-    await fs.promises.writeFile(filePath, url);
+    await fs.promises.writeFile(filePath, `export const url = "${url}"`);
 
     console.log(`👍  URL has been saved to ${filePath}`);
   } catch (err) {
