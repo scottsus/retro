@@ -36,7 +36,8 @@ export async function generateCode({
             Instead, give your take on how it should be using a subset of the text and images.
             
             Here are some requirements:
-            - must adhere to Next 14 principles - if you're using any 'use' hooks, remember to add "use client"
+            - must adhere to Next 14 principles
+            - DON'T USE ANY HOOKS
             - must use tailwind for styling
             - make sure to include hover effects over buttons and links
             - must compile
@@ -69,6 +70,10 @@ export async function generateCode({
             text: `These are the links to the images above, and their alts: 
                 [${imagesSliced.map((image) => `${image.alt}: ${image.src}`).slice(0, MAX_IMAGES_LEN)}]
             `,
+          },
+          {
+            type: "text",
+            text: "REMEMBER TO NEVER USE THE <a> TAG AND ONLY USE GIVEN IMAGE SOURCES! MY LIFE DEPENDS ON IT!",
           },
         ],
       },
